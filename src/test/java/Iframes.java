@@ -4,19 +4,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Airbnb {
+public class Iframes {
     public static void main(String[] args) {
         WebDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
-        driver.get("https://www.airbnb.com/?has_logged_out=1");
+        driver.get("https://www.duotech.io/enroll-sqae2");
 
-        WebElement login = driver.findElement(By.xpath("//button[@class=\"cnky2vc c1r2bm7w cln384f dir dir-ltr\"]"));
-        login.click();
-        //Select login = new Select(driver.findElement(By.cssSelector("[data-testid='cypress-headernav-profile']")));
-       // login.selectByVisibleText("Log in");
-        WebElement loginLink = driver.findElement(By.linkText("Log in"));
-        loginLink.click();
+        WebElement iframe = driver.findElement(By.xpath("//iframe[starts-with( @id,'169')]"));
+        driver.switchTo().frame(iframe);
+
+        WebElement firstName = driver.findElement(By.cssSelector("input[placeholder='First']"));
+        firstName.sendKeys("Bobby");
+
+        driver.switchTo().defaultContent();//switch the context back to the main page
+
+        //System.out.println(driver.findElement(By.xpath()));
+
+
     }
 
 }
